@@ -96,8 +96,15 @@ public:
 	// convert screen coordinates (i.e. pixels) to location (latitude, longitude)
 	ofxLocation getLocationForScreenCoordinates(float x, float y);
 
+    
+    
+    // convert location (latitude, longitude) to projected point
+	RMProjectedPoint locationToProjectedPoint(double latitude, double longitude);
 	
 	
+    // convert projected point to screen coordinates (i.e. pixels)
+    ofPoint getScreenCoordinatesForProjectedPoint(RMProjectedPoint point);
+    
 	// convert location (latitude, longitude) and span (in degrees) to screen coordinates (i.e. pixels)
 	ofRectangle getScreenRectForRegion(double latitude, double latitudeDelta, double longitudeDelta); 
 	

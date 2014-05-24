@@ -204,6 +204,22 @@ ofPoint RMMapKit::getScreenCoordinatesForLocation(CLLocationCoordinate2D loc) {
 }
 
 
+RMProjectedPoint RMMapKit::locationToProjectedPoint(double latitude, double longitude){
+    return [[mapView projection] coordinateToProjectedPoint:CLLocationCoordinate2DMake(latitude,longitude)];
+}
+
+ofPoint RMMapKit::getScreenCoordinatesForProjectedPoint(RMProjectedPoint point) {
+
+    CGPoint cgPoint = [mapView projectedPointToPixel:point];
+    if(IS_RETINA)
+    {
+        return ofPoint(ofGetWidth()/4+(cgPoint.x*2),ofGetHeight()/4+ (cgPoint.y*2), 0);
+    } else{
+        return ofPoint(cgPoint.x,cgPoint.y, 0);
+    }
+    
+}
+
 
 double RMMapKit::distance(ofxLocation locBegin, ofxLocation locEnd) {
     double theta, dist;
