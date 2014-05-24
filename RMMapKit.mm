@@ -87,7 +87,7 @@ void RMMapKit::onlineMap(string urlVal){
         RMMapBoxSource   *onlineSource =    [[RMMapBoxSource alloc] initWithReferenceURL:url ];
 
         
-        mapViewController = [[mapController alloc] initWithFrame: CGRectMake(0, 30,
+        mapViewController = [[mapController alloc] initWithFrame: CGRectMake(0, 0,
                                                                              ofGetWidth(),
                                                                              ofGetHeight())
                                                    andTilesource:onlineSource ];
