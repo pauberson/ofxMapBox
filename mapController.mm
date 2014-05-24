@@ -93,7 +93,7 @@ bool isRetina;
          [self.segmentedControl addTarget:self action:@selector(toggleMode:) forControlEvents:UIControlEventValueChanged];
          [self.segmentedControl setSelectedSegmentIndex:0];
          
-    [[[ofxiPhoneGetAppDelegate() glViewController] glView] removeFromSuperview];
+    [[[ofxiOSGetAppDelegate() glViewController] glView] removeFromSuperview];
          
          self.mapView= [[RMMapView  alloc] initWithFrame: frame  andTilesource:source];
          
@@ -117,9 +117,9 @@ bool isRetina;
      
       
          
-         iPhoneGetGLView().userInteractionEnabled = NO;
-         [self.mapView._mapScrollView addSubview: iPhoneGetGLView() ];
-         [self.mapView._mapScrollView bringSubviewToFront:  iPhoneGetGLView()]; 
+         ofxiOSGetGLView().userInteractionEnabled = NO;
+         [self.mapView._mapScrollView addSubview: ofxiOSGetGLView() ];
+         [self.mapView._mapScrollView bringSubviewToFront:  ofxiOSGetGLView()];
         
          self.mapView._mapScrollView.delegate = self;
          self.mapView._mapScrollView.userInteractionEnabled=YES;
@@ -216,7 +216,7 @@ bool isRetina;
        UIApplicationState appState = [[UIApplication sharedApplication] applicationState];
        if( (appState != UIApplicationStateBackground) && (appState != UIApplicationStateInactive))
         {
-    [ iPhoneGetGLView()  drawView];
+    [ ofxiOSGetGLView()  drawView];
             
         }
     return YES;
@@ -226,7 +226,7 @@ bool isRetina;
     UIApplicationState appState = [[UIApplication sharedApplication] applicationState];
     if( (appState != UIApplicationStateBackground) && (appState != UIApplicationStateInactive))
     {
-    [ iPhoneGetGLView()  drawView];
+    [ ofxiOSGetGLView()  drawView];
     }
     return YES;
 }
@@ -236,7 +236,7 @@ bool isRetina;
     UIApplicationState appState = [[UIApplication sharedApplication] applicationState];
     if( (appState != UIApplicationStateBackground) && (appState != UIApplicationStateInactive))
     {
-    [ iPhoneGetGLView()  drawView];
+    [ ofxiOSGetGLView()  drawView];
     }
     return YES;
 }
@@ -246,8 +246,8 @@ bool isRetina;
     UIApplicationState appState = [[UIApplication sharedApplication] applicationState];
     if( (appState != UIApplicationStateBackground) && (appState != UIApplicationStateInactive))
     {
-    if ( iPhoneGetGLView())
-    [ iPhoneGetGLView() drawView];
+    if ( ofxiOSGetGLView())
+    [ ofxiOSGetGLView() drawView];
     }
     if (setZoom == true){
         return mapView._tiledLayersSuperview;
@@ -277,11 +277,11 @@ bool isRetina;
 
     if (isRetina){
         CGRect screenBounds = [[UIScreen mainScreen] bounds];
-         iPhoneGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x + screenBounds.size.width/2,
+         ofxiOSGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x + screenBounds.size.width/2,
                                               mapView._mapScrollView.contentOffset.y + screenBounds.size.height/2);
     }
     else{
-         iPhoneGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x + ((float)ofGetWidth())/2, mapView._mapScrollView.contentOffset.y + ((float)ofGetHeight())/2);
+         ofxiOSGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x + ((float)ofGetWidth())/2, mapView._mapScrollView.contentOffset.y + ((float)ofGetHeight())/2);
     }
     
   
@@ -343,7 +343,7 @@ bool isRetina;
 
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    [ iPhoneGetGLView()  drawView];
+    [ ofxiOSGetGLView()  drawView];
 
 }
 
