@@ -38,9 +38,11 @@ void MapRouteApp::setup() {
     // transparency
     ofxiPhoneSendGLViewToFront();
 	ofxiPhoneSetGLViewTransparent(true);
-    mapKit.setMapZoom(20,true);
+
     mapKit.retinaDisplay(true);
     mapKit.onlineMap("http://api.tiles.mapbox.com/v3/examples.map-zr0njcqy.jsonp");
+    mapKit.setMinZoom(2);
+    mapKit.setMapZoom(9,true);
     mapKit.setCenter(POS2_LATITUDE, POS2_LONGITUDE);
     
     // when rotation modified manually, set rotate to UserTrackingModeNone 
