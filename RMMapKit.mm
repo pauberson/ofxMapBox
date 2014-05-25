@@ -98,9 +98,6 @@ void RMMapKit::onlineMap(string urlVal){
   
         [ofxiPhoneGetUIWindow() addSubview:mapView];
         
-
-        mapView = mapViewController.getMapView;
-        [mapView setDelegate :mapViewController];
         
         CGRect rect =  ofxiPhoneGetGLView().frame;
         cout<< rect.size.width<<endl;
@@ -114,7 +111,6 @@ void RMMapKit::onlineMap(string urlVal){
         cout<< ofGetHeight()<<endl;
         
         ofxiPhoneGetGLView().frame = rect;
-        [ofxiPhoneGetUIWindow() addSubview:mapView];
     
    
     
