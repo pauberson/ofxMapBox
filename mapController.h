@@ -52,5 +52,7 @@
 @property (nonatomic) float valueZoom;
 @property (nonatomic)  bool tapping;
 
+@property (nonatomic) CGPoint viewOffset;
+
 @end
 

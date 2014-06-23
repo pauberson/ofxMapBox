@@ -36,7 +36,7 @@
 @synthesize tapping;
 @synthesize tapGestureRecognizer;
 
-
+@synthesize viewOffset;
 
 
 
@@ -89,7 +89,8 @@ bool isRetina;
 
      if (self) {
          
-         [self.mapView._mapScrollView setContentOffset:CGPointZero];
+         // TODO remove next 4 lines?
+        [self.mapView._mapScrollView setContentOffset:CGPointZero];
          [self.segmentedControl addTarget:self action:@selector(toggleMode:) forControlEvents:UIControlEventValueChanged];
          [self.segmentedControl setSelectedSegmentIndex:0];
          
@@ -111,6 +112,9 @@ bool isRetina;
          
          }  else{
              
+             self.mapView.frame = self.view.bounds;
+             self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
              isRetina = false;
          }
 
@@ -273,7 +277,9 @@ bool isRetina;
 }
 
 
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
 
     if (isRetina){
         CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -281,7 +287,13 @@ bool isRetina;
                                               mapView._mapScrollView.contentOffset.y + screenBounds.size.height/2);
     }
     else{
-         ofxiOSGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x + ((float)ofGetWidth())/2, mapView._mapScrollView.contentOffset.y + ((float)ofGetHeight())/2);
+       //  ofxiOSGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x + ((float)ofGetWidth())/2, mapView._mapScrollView.contentOffset.y + ((float)ofGetHeight())/2);
+        
+        float vox = ((float)ofGetWidth())/2;
+        float voy = ((float)ofGetHeight())/2;
+        
+        //cout << "vox " << vox << " " << voy ;
+       ofxiOSGetGLView().center = CGPointMake(mapView._mapScrollView.contentOffset.x+viewOffset.x, mapView._mapScrollView.contentOffset.y+viewOffset.y);
     }
     
   

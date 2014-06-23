@@ -183,7 +183,8 @@ ofPoint RMMapKit::getScreenCoordinatesForLocation(double latitude, double longit
     {
         return ofPoint(ofGetWidth()/4+(cgPoint.x*2),ofGetHeight()/4+ (cgPoint.y*2), 0);
     } else{
-        return ofPoint(cgPoint.x,cgPoint.y, 0);
+       // return ofPoint(cgPoint.x,cgPoint.y, 0);
+        return ofPoint(cgPoint.x+128,cgPoint.y-128, 0);
     }
     
     
@@ -209,9 +210,10 @@ ofPoint RMMapKit::getScreenCoordinatesForProjectedPoint(RMProjectedPoint point) 
     CGPoint cgPoint = [mapView projectedPointToPixel:point];
     if(IS_RETINA)
     {
-        return ofPoint(ofGetWidth()/4+(cgPoint.x*2),ofGetHeight()/4+ (cgPoint.y*2), 0);
+        return ofPoint(cgPoint.x+128,cgPoint.y-128, 0);
+        //return ofPoint(ofGetWidth()/4 +(cgPoint.x*2),ofGetHeight()/4+ (cgPoint.y*2), 0);
     } else{
-        return ofPoint(cgPoint.x,cgPoint.y, 0);
+        return ofPoint(cgPoint.x+128,cgPoint.y-128, 0);
     }
     
 }
@@ -260,7 +262,7 @@ CLLocationCoordinate2D RMMapKit::makeCLLocation(double latitude, double longitud
 void RMMapKit::setCenter(double latitude, double longitude, bool animated ) {
 
 	
-	[mapView setCenterCoordinate:CLLocationCoordinate2DMake(latitude, longitude) animated:true];
+	[mapView setCenterCoordinate:CLLocationCoordinate2DMake(latitude, longitude) animated:animated];
   
 }
 
@@ -347,6 +349,7 @@ void RMMapKit::rotateMap(double degrees, float seconds)
 
 void RMMapKit::rotateMap(double degrees){
      [mapView rotateUser:degrees];
+    mapViewController.viewOffset = CGPointMake(384, 512);
     
 }
 BOOL RMMapKit::isRotating(){
